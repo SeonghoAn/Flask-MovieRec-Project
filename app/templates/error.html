@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- 오류페이지 -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <span class="display-1 d-block">Error</span>
+            <div class="mb-4 lead">{{ text }}.</div>
+            <div class="mb-4 lead">{{ error }}</div>
+            <a href="/" class="btn btn-link">홈으로 돌아가기</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

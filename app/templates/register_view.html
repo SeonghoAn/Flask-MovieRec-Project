@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">계정생성</h5>
+    <form method="post">
+        {{ form.csrf_token }}
+        {% include "form_errors.html" %}
+        <div class="mb-3">
+            <label for="username">사용자 이름</label>
+            <input type="text" class="form-control" name="username" id="username"
+                   value="{{ form.username.data or '' }}" placeholder="Write username...">
+        </div>
+        <div class="mb-3">
+            <label for="password1">비밀번호</label>
+            <input type="password" class="form-control" name="password1" id="password1"
+                   value="{{ form.password1.data or '' }}" placeholder="Write password...">
+        </div>
+        <div class="mb-3">
+            <label for="password2">비밀번호 확인</label>
+            <input type="password" class="form-control" name="password2" id="password2"
+                   value="{{ form.password2.data or '' }}" placeholder="Valid password...">
+        </div>
+        <div class="mb-3">
+            <label for="email">이메일</label>
+            <input type="text" class="form-control" name="email" id="email"
+                   value="{{ form.email.data or '' }}" placeholder="Write email...">
+        </div>
+        <div class="mb-3">
+            <label for="movie1">Movie 1</label>
+            <input type='text' list="movie_list" id="movie1" name="movie1" value="{{ form.movie1.data or '' }}" class="form-control" placeholder="Search Movies...">
+            <datalist id="movie_list">
+                {% for movie in movie_list %}
+                <option value="{{ movie.title }}">{{ movie.title }}</option>
+                {% endfor %}
+            </datalist>
+            <label for="rating1">Rating 1</label>
+            <input type="number" class="form-control" name="rating1" id="rating1" value="{{ form.rating1.data or '' }}" placeholder="Write rating...">
+        </div>
+        <div class="mb-3">
+            <label for="movie2">Movie 2</label>
+            <input type='text' list="movie_list" id="movie2" name="movie2" value="{{ form.movie2.data or '' }}" class="form-control" placeholder="Search Movies...">
+            <label for="rating2">Rating 2</label>
+            <input type="number" class="form-control" name="rating2" id="rating2" value="{{ form.rating2.data or '' }}" placeholder="Write rating...">
+        </div>
+        <div class="mb-3">
+            <label for="movie3">Movie 3</label>
+            <input type='text' list="movie_list" id="movie3" name="movie3" value="{{ form.movie3.data or '' }}" class="form-control" placeholder="Search Movies...">
+            <label for="rating3">Rating 2</label>
+            <input type="number" class="form-control" name="rating3" id="rating3" value="{{ form.rating3.data or '' }}" placeholder="Write rating...">
+        </div>
+        <div class="mb-3">
+            <label for="movie4">Movie 4</label>
+            <input type='text' list="movie_list" id="movie4" name="movie4" value="{{ form.movie4.data or '' }}" class="form-control" placeholder="Search Movies...">
+            <label for="rating4">Rating 4</label>
+            <input type="number" class="form-control" name="rating4" id="rating4"value="{{ form.rating4.data or '' }}"  placeholder="Write rating...">
+        </div>
+        <div class="mb-3">
+            <label for="movie5">Movie 5</label>
+            <input type='text' list="movie_list" id="movie5" name="movie5" value="{{ form.movie5.data or '' }}" class="form-control" placeholder="Search Movies...">
+            <label for="rating5">Rating 5</label>
+            <input type="number" class="form-control" name="rating5" id="rating5" value="{{ form.rating5.data or '' }}" placeholder="Write rating...">
+        </div>
+        <button type="submit" class="btn btn-primary">생성하기</button>
+    </form>
+</div>
+{% endblock %}

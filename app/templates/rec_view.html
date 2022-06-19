@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <h2 class="border-bottom py-2">Movie Recommandation by SVD</h2>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        {% if g.user %}
+        {% if svd_rec %}
+        {% for rec in svd_rec %}
+        <div class="col">
+            <div class="card h-100">
+              <a href="{{ rec.link }}"><img src="/static/img/{{ rec.img_path }}" class="card-img-top" alt="{{ rec.title }}"></a>
+              <div class="card-body">
+                <h5 class="card-title">{{ rec.title }}</h5>
+                <p class="card-text">
+                    {% for genre in rec.genre_set %}
+                    {{ genre.genre }}
+                    {% endfor %}
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">{{ rec.date }}</small>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% else %}
+        <h5>로그인이 필요합니다.</h5>
+        {% endif %}
+    </div>
+    <h2 class="border-bottom py-2">Similar User's History</h2>
+    <h3 class="border-bottom py-2">User 1</h3>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+    {% if g.user %}
+    {% if user_rec %}
+    {% for user1 in user_rec[0] %}
+        <div class="col">
+            <div class="card h-100">
+              <a href="{{ user1.link }}"><img src="/static/img/{{ user1.img_path }}" class="card-img-top" alt="{{ user1.title }}"></a>
+              <div class="card-body">
+                <h5 class="card-title">{{ user1.title }}</h5>
+                <p class="card-text">
+                    {% for genre in user1.genre_set %}
+                    {{ genre.genre }}
+                    {% endfor %}
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">{{ user1.date }}</small>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <h3 class="border-bottom py-2">User 2</h3>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        {% for user2 in user_rec[1] %}
+        <div class="col">
+            <div class="card h-100">
+              <a href="{{ user2.link }}"><img src="/static/img/{{ user2.img_path }}" class="card-img-top" alt="{{ user2.title }}"></a>
+              <div class="card-body">
+                <h5 class="card-title">{{ user2.title }}</h5>
+                <p class="card-text">
+                    {% for genre in user2.genre_set %}
+                    {{ genre.genre }}
+                    {% endfor %}
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">{{ user2.date }}</small>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <h3 class="border-bottom py-2">User 3</h3>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+    {% for user3 in user_rec[2] %}
+        <div class="col">
+            <div class="card h-100">
+              <a href="{{ user3.link }}"><img src="/static/img/{{ user3.img_path }}" class="card-img-top" alt="{{ user3.title }}"></a>
+              <div class="card-body">
+                <h5 class="card-title">{{ user3.title }}</h5>
+                <p class="card-text">
+                    {% for genre in user3.genre_set %}
+                    {{ genre.genre }}
+                    {% endfor %}
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">{{ user3.date }}</small>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+    {% else %}
+    <h5>로그인이 필요합니다.</h5>
+    {% endif %}
+</div>
+{% endblock %}
